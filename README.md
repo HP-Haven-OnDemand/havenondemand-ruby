@@ -1,3 +1,5 @@
+Note: this branch is depreciated. All future work will be done on master [here](https://github.com/HP-Haven-OnDemand/havenondemand-node/).
+
 # iodruby
 
 Ruby Gem to help call IDOL OnDemand API.
