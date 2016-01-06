@@ -1,19 +1,10 @@
-
-
 require 'Unirest'
 require 'json'
-#require 'httpclient'
-
-
-
-
-
+require 'httparty'
 
 class HODError < StandardError
 
 end
-
-
 
 class HODResponse
 
@@ -26,7 +17,7 @@ class HODResponse
   end
 
   def json()
-    @response.body
+    @response.parsed_response
   end
 
 end
@@ -39,7 +30,7 @@ class HODAsyncResponse < HODResponse
     #@query=query
     @response=response
     @client=client
-    @jobID =response.body["jobID"]
+    @jobID =response.parsed_response["jobID"]
   end
 
   def status()
@@ -51,8 +42,6 @@ class HODAsyncResponse < HODResponse
   end
 
 end
-
-
 
 class HODClient
   @@version=1
@@ -71,18 +60,16 @@ class HODClient
 
   def getStatus(jobID)
     data={"apikey"=>@apikey}
-    response=Unirest.post "#{@url}/#{@@version}/job/status/#{jobID}",
-                    headers:{ "Accept" => "application/json" },
-                    parameters:data
+    response=HTTParty.post "#{@url}/#{@@version}/job/status/#{jobID}",
+                    body: data
     return HODResponse.new(response)
 
   end
 
   def getResult(jobID)
     data={"apikey"=>@apikey}
-    response=Unirest.post "#{@url}/#{@@version}/job/result/#{jobID}",
-                      headers:{ "Accept" => "application/json" },
-                      parameters:data
+    response=HTTParty.post "#{@url}/#{@@version}/job/result/#{jobID}",
+                      body: data
     return HODResponse.new(response)
   end
 
@@ -139,10 +126,9 @@ class HODClient
     if async
       syncpath="async"
     end
-    Unirest.timeout(30)
-    response=Unirest.post "#{@url}/#{@@version}/api/#{syncpath}/#{handler}/#{@@apidefault}",
-                        headers:{ "Accept" => "application/json", "Content-Type" => "application/json"},
-                        parameters:data
+    response=HTTParty.post "#{@url}/#{@@version}/api/#{syncpath}/#{handler}/#{@@apidefault}",
+                        body: data
+
     if response.code == 200
 
       if async
@@ -150,9 +136,9 @@ class HODClient
       end
       return HODResponse.new(response)
     else
-      puts response.body
+      puts response.parsed_response
       #puts data[:json].encoding.name
-      raise HODError.new "Error #{response.body["error"]} -- #{response.body["reason"]}"
+      raise HODError.new "Error #{response.parsed_response["error"]} -- #{response.parsed_response["reason"]}"
     end
   end
 
