@@ -6,8 +6,8 @@ require 'havenondemand/version'
 Gem::Specification.new do |spec|
   spec.name          = "havenondemand"
   spec.version       = Havenondemand::VERSION
-  spec.authors       = ["Tyler Nappy" ," Martin Zerbib"]
-  spec.email         = ["tyler.nappy@hpe.com"]
+  spec.authors       = ["Phong Vu","Tyler Nappy" ," Martin Zerbib"]
+  spec.email         = ["phong.vu@hpe.com"]
   spec.summary       = %q{Haven OnDemand Ruby Client}
   spec.description   = %q{}
   spec.homepage      = "https://github.com/HP-Haven-OnDemand/havenondemand-ruby"
