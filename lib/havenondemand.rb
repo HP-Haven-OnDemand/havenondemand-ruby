@@ -1,6 +1,6 @@
 
 
-require 'Unirest'
+require 'unirest'
 require 'json'
 #require 'httpclient'
 #require 'byebug'
