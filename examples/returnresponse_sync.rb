@@ -1,4 +1,4 @@
-require_relative "../lib/havenondemand.rb"
+require "havenondemand"
 
 $client = HODClient.new("YOUR_API_KEY", "v1")
 

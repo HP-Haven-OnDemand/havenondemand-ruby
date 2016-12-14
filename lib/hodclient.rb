@@ -30,7 +30,6 @@ class HODClient
         return response.body
       end
     else
-      puts "Error: #{response.body}"
       err = create_error_object(response.body["error"],response.body["reason"],response.body["detail"],"")
       if callback != nil
         callback.call(err)
@@ -93,7 +92,6 @@ class HODClient
         return response.body
       end
     else
-      puts "Error: #{response.body}"
       err = create_error_object(response.body["error"],response.body["reason"],response.body["detail"],"")
       if callback != nil
         callback.call(err)
@@ -144,7 +142,6 @@ class HODClient
         return response.body
       end
     else
-      puts "Error: #{response.body}"
       err = create_error_object(response.body["error"],response.body["reason"],response.body["detail"],"")
       if callback != nil
         callback.call(err)
@@ -184,7 +181,6 @@ class HODClient
         return response.body
       end
     else
-      puts "Error: #{response.body}"
       err = create_error_object(response.body["error"],response.body["reason"],response.body["detail"],"")
       if callback != nil
         callback.call(err)
@@ -244,7 +240,6 @@ class HODClient
         return response.body
       end
     else
-      puts "Error: #{response.body}"
       err = create_error_object(response.body["error"],response.body["reason"],response.body["detail"],"")
       if callback != nil
         callback.call(err)

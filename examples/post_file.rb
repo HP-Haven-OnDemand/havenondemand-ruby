@@ -1,4 +1,4 @@
-require_relative "../lib/havenondemand.rb"
+require "havenondemand"
 
 $client = HODClient.new("YOUR_API_KEY", "v1")
 $parser = HODResponseParser.new()
@@ -46,7 +46,7 @@ def asyncCallback(response)
 end
 
 params = {}
-params["file"] = "pathto/filename.xxx"
-params["entity_type"] = ['people_eng','places_eng']
-hodApp = 'extractentities'
+params["file"] = "review.job"
+params["mode"] = "document_photo"
+hodApp = 'ocrdocument'
 $client.post_request(hodApp, params, true, method(:asyncCallback))
